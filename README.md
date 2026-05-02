@@ -4,7 +4,7 @@ A responsive single-page application for discovering and filtering healthy recip
 
 ## Live Demo
 
-_Link coming soon_
+_https://unrivaled-parfait-5d9215.netlify.app/_
 
 ---
 
