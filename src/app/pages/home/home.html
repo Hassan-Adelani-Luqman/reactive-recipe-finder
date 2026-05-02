@@ -1,0 +1,282 @@
+<div class="home">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <h1 class="hero__heading">Healthy meals, zero fuss</h1>
+        <p class="hero__sub">
+          Discover eight quick, whole-food recipes that you can cook tonight&mdash;no
+          processed junk, no guesswork.
+        </p>
+        <a routerLink="/recipes" class="btn-primary">Start exploring</a>
+      </div>
+      <div class="hero__image-wrap">
+        <img
+          src="assets/images/image-home-hero-large.webp"
+          srcset="assets/images/image-home-hero-small.webp 480w, assets/images/image-home-hero-large.webp 800w"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          alt="Person preparing a healthy meal in a bright kitchen"
+          class="hero__image"
+        />
+        <img src="assets/images/pattern-squiggle-1.svg" alt="" class="hero__squiggle hero__squiggle--1" aria-hidden="true" />
+        <img src="assets/images/pattern-squiggle-2.svg" alt="" class="hero__squiggle hero__squiggle--2" aria-hidden="true" />
+      </div>
+    </div>
+  </section>
+
+  <!-- What you'll get -->
+  <section class="features">
+    <div class="container">
+      <h2 class="features__heading">What you'll get</h2>
+      <div class="features__grid">
+        <div class="feature">
+          <img src="assets/images/icon-whole-food-recipes.svg" alt="" class="feature__icon" aria-hidden="true" />
+          <h3 class="feature__title">Whole-food recipes</h3>
+          <p class="feature__desc">Each dish uses everyday, unprocessed ingredients.</p>
+        </div>
+        <div class="feature">
+          <img src="assets/images/icon-minimum-fuss.svg" alt="" class="feature__icon" aria-hidden="true" />
+          <h3 class="feature__title">Minimum fuss</h3>
+          <p class="feature__desc">All recipes are designed to make eating healthy quick and easy.</p>
+        </div>
+        <div class="feature">
+          <img src="assets/images/icon-search-in-seconds.svg" alt="" class="feature__icon" aria-hidden="true" />
+          <h3 class="feature__title">Search in seconds</h3>
+          <p class="feature__desc">Filter by name or ingredient and jump straight to the recipe you need.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Built for real life -->
+  <section class="real-life">
+    <div class="container real-life__inner">
+      <div class="real-life__content">
+        <h2 class="real-life__heading">Built for real life</h2>
+        <p class="real-life__text">
+          Cooking shouldn't be complicated. These recipes come in under
+          <strong>30 minutes</strong> of active time, fit busy schedules, and
+          taste good enough to repeat.
+        </p>
+        <p class="real-life__text">
+          Whether you're new to the kitchen or just need fresh ideas, we've got
+          you covered.
+        </p>
+      </div>
+      <div class="real-life__image-wrap">
+        <img
+          src="assets/images/image-home-real-life-large.webp"
+          srcset="assets/images/image-home-real-life-small.webp 480w, assets/images/image-home-real-life-large.webp 800w"
+          sizes="(max-width: 768px) 100vw, 45vw"
+          alt="Hands chopping vegetables on a wooden cutting board"
+          class="real-life__image"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-banner__card">
+        <img src="assets/images/pattern-fork.svg" alt="" class="cta-pattern cta-pattern--fork" aria-hidden="true" />
+        <img src="assets/images/pattern-knife.svg" alt="" class="cta-pattern cta-pattern--knife" aria-hidden="true" />
+        <img src="assets/images/pattern-squiggle-1.svg" alt="" class="cta-pattern cta-pattern--squiggle-1" aria-hidden="true" />
+        <img src="assets/images/pattern-squiggle-2.svg" alt="" class="cta-pattern cta-pattern--squiggle-2" aria-hidden="true" />
+        <h2>Ready to cook smarter?</h2>
+        <p>Hit the button, pick a recipe, and get dinner on the table&mdash;fast.</p>
+        <a routerLink="/recipes" class="btn-primary">Browse recipes</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<style>
+  /* Hero */
+  .hero {
+    padding: 3rem 0 0;
+    overflow: hidden;
+  }
+
+  .hero__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: stretch;
+  }
+
+  .hero__content {
+    text-align: left;
+  }
+
+  .hero__heading {
+    font-size: clamp(2rem, 6vw, 3.25rem);
+    margin-bottom: 1rem;
+  }
+
+  .hero__sub {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.75rem;
+    line-height: 1.7;
+  }
+
+  .hero__image-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 1rem;
+    overflow: visible;
+  }
+
+  .hero__image {
+    width: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+  }
+
+  .hero__squiggle {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .hero__squiggle--1 {
+    top: -1.5rem;
+    right: -1.5rem;
+    width: 80px;
+    opacity: 0.6;
+  }
+
+  .hero__squiggle--2 {
+    bottom: -1.5rem;
+    left: -1.5rem;
+    width: 80px;
+    opacity: 0.6;
+  }
+
+  /* Features */
+  .features {
+    padding: 4rem 0;
+    background-color: var(--color-bg);
+  }
+
+  .features__heading {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .features__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .feature {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .feature__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .feature__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .feature__desc {
+    font-size: 0.925rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  /* Real life */
+  .real-life {
+    padding: 4rem 0;
+  }
+
+  .real-life__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .real-life__content {
+    max-width: 520px;
+  }
+
+  .real-life__heading {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 1rem;
+  }
+
+  .real-life__text {
+    font-size: 0.975rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+
+  .real-life__text strong {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent-orange);
+  }
+
+  .real-life__image-wrap {
+    width: 100%;
+    max-width: 560px;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .real-life__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+  }
+
+  /* Responsive */
+  @media (min-width: 768px) {
+    .hero__inner {
+      flex-direction: row;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .hero__content {
+      text-align: left;
+      flex: 1;
+    }
+
+    .hero__image-wrap {
+      flex: 1;
+    }
+
+    .features__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .real-life__inner {
+      flex-direction: row;
+      gap: 4rem;
+    }
+
+    .real-life__content {
+      flex: 1;
+    }
+
+    .real-life__image-wrap {
+      flex: 1;
+    }
+  }
+</style>

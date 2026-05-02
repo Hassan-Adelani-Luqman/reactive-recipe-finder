@@ -1,0 +1,283 @@
+@if (recipe(); as r) {
+  <div class="detail-page">
+
+    <!-- Breadcrumb -->
+    <div class="container detail-breadcrumb">
+      <a routerLink="/recipes" class="detail-breadcrumb__link">Recipes</a>
+      <span class="detail-breadcrumb__sep">/</span>
+      <span class="detail-breadcrumb__current">{{ r.title }}</span>
+    </div>
+
+    <!-- Main -->
+    <section class="container detail-main">
+      <div class="detail-main__image-wrap">
+        <img
+          [src]="r.image.large"
+          [srcset]="r.image.small + ' 480w, ' + r.image.large + ' 800w'"
+          sizes="(max-width: 768px) 100vw, 45vw"
+          [alt]="r.title"
+          class="detail-main__image"
+        />
+      </div>
+
+      <div class="detail-main__content">
+        <h1 class="detail-main__title">{{ r.title }}</h1>
+        <p class="detail-main__overview">{{ r.overview }}</p>
+
+        <div class="detail-main__meta">
+          <span class="detail-meta-item">
+            <img src="assets/images/icon-servings.svg" alt="" width="18" height="18" aria-hidden="true" />
+            Servings: {{ r.servings }}
+          </span>
+          <span class="detail-meta-item">
+            <img src="assets/images/icon-prep-time.svg" alt="" width="18" height="18" aria-hidden="true" />
+            Prep: {{ r.prepMinutes }} mins
+          </span>
+          <span class="detail-meta-item">
+            <img src="assets/images/icon-cook-time.svg" alt="" width="18" height="18" aria-hidden="true" />
+            Cook: {{ r.cookMinutes }} mins
+          </span>
+        </div>
+
+        <div class="detail-section">
+          <h2 class="detail-section__title">Ingredients:</h2>
+          <ul class="detail-ingredients">
+            @for (ingredient of r.ingredients; track $index) {
+              <li class="detail-ingredient">
+                <img src="assets/images/icon-bullet-point.svg" alt="" width="14" height="14" aria-hidden="true" />
+                {{ ingredient }}
+              </li>
+            }
+          </ul>
+        </div>
+
+        <div class="detail-section">
+          <h2 class="detail-section__title">Instructions:</h2>
+          <ol class="detail-instructions">
+            @for (step of r.instructions; track $index) {
+              <li class="detail-instruction">
+                <img src="assets/images/icon-bullet-point.svg" alt="" width="14" height="14" aria-hidden="true" />
+                {{ step }}
+              </li>
+            }
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- More recipes -->
+    @if (moreRecipes().length > 0) {
+      <section class="more-recipes">
+        <div class="container">
+          <h2 class="more-recipes__title">More recipes</h2>
+          <div class="more-recipes__grid">
+            @for (recipe of moreRecipes(); track recipe.id) {
+              <app-recipe-card [recipe]="recipe" />
+            }
+          </div>
+        </div>
+      </section>
+    }
+
+  </div>
+} @else {
+  <div class="container detail-not-found">
+    <p>Recipe not found.</p>
+    <a routerLink="/recipes" class="btn-primary">Back to recipes</a>
+  </div>
+}
+
+<style>
+  /* Breadcrumb */
+  .detail-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .detail-breadcrumb__link {
+    color: var(--color-text-muted);
+    transition: color 0.2s;
+    border-radius: 2px;
+  }
+
+  .detail-breadcrumb__link:hover {
+    color: var(--color-primary);
+  }
+
+  .detail-breadcrumb__link:focus-visible {
+    outline: 2px solid var(--color-accent-orange);
+    outline-offset: 3px;
+    color: var(--color-primary);
+  }
+
+  .detail-breadcrumb__sep {
+    color: var(--color-text-muted);
+  }
+
+  .detail-breadcrumb__current {
+    color: var(--color-primary);
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60vw;
+  }
+
+  /* Main layout */
+  .detail-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+  }
+
+  .detail-main__image-wrap {
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .detail-main__image {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+  }
+
+  .detail-main__title {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    margin-bottom: 0.625rem;
+  }
+
+  .detail-main__overview {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+
+  .detail-main__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .detail-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  /* Sections */
+  .detail-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .detail-section__title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Ingredients */
+  .detail-ingredients {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .detail-ingredient {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--color-text);
+  }
+
+  .detail-ingredient img {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+
+  /* Instructions */
+  .detail-instructions {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .detail-instruction {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+
+  .detail-instruction img {
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+
+  /* More recipes */
+  .more-recipes {
+    padding: 2rem 0 4rem;
+    background-color: var(--color-bg-section);
+  }
+
+  .more-recipes__title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .more-recipes__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Not found */
+  .detail-not-found {
+    padding: 4rem 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Responsive */
+  @media (min-width: 768px) {
+    .detail-main {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 3rem;
+    }
+
+    .detail-main__image-wrap {
+      flex: 1;
+      max-width: 460px;
+    }
+
+    .detail-main__content {
+      flex: 1;
+    }
+
+    .more-recipes__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

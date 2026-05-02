@@ -1,0 +1,189 @@
+<header class="navbar">
+  <div class="navbar__inner container">
+    <!-- Logo -->
+    <a routerLink="/" class="navbar__logo" (click)="closeMobileMenu()">
+      <img src="assets/images/logo.svg" alt="Healthy Recipe Finder" height="32" />
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="navbar__links" aria-label="Main navigation">
+      <a routerLink="/" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__link">Home</a>
+      <a routerLink="/about" routerLinkActive="navbar__link--active" class="navbar__link">About</a>
+      <a routerLink="/recipes" routerLinkActive="navbar__link--active" class="navbar__link">Recipes</a>
+    </nav>
+
+    <!-- Desktop CTA -->
+    <a routerLink="/recipes" class="btn-primary navbar__cta">Browse recipes</a>
+
+    <!-- Hamburger (mobile/tablet) -->
+    <button
+      class="navbar__hamburger"
+      (click)="toggleMobileMenu()"
+      [attr.aria-expanded]="mobileMenuOpen()"
+      aria-label="Toggle menu"
+    >
+      <img src="assets/images/icon-hamburger-menu.svg" alt="" width="24" height="24" />
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  @if (mobileMenuOpen()) {
+    <div class="navbar__mobile-menu">
+      <nav aria-label="Mobile navigation">
+        <a routerLink="/" routerLinkActive="navbar__mobile-link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__mobile-link" (click)="closeMobileMenu()">Home</a>
+        <a routerLink="/about" routerLinkActive="navbar__mobile-link--active" class="navbar__mobile-link" (click)="closeMobileMenu()">About</a>
+        <a routerLink="/recipes" routerLinkActive="navbar__mobile-link--active" class="navbar__mobile-link" (click)="closeMobileMenu()">Recipes</a>
+        <a routerLink="/recipes" class="btn-primary navbar__mobile-cta" (click)="closeMobileMenu()">Browse recipes</a>
+      </nav>
+    </div>
+  }
+</header>
+
+<style>
+  .navbar {
+    background-color: var(--color-bg);
+    border-bottom: 1px solid rgba(30, 58, 47, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .navbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+    gap: 1rem;
+  }
+
+  .navbar__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .navbar__brand {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-primary);
+    white-space: nowrap;
+  }
+
+  .navbar__links {
+    display: none;
+    align-items: center;
+    gap: 1.75rem;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .navbar__link {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .navbar__link:hover,
+  .navbar__link--active {
+    border-bottom-color: var(--color-accent-orange);
+  }
+
+  .navbar__link:focus-visible {
+    outline: 2px solid var(--color-accent-orange);
+    outline-offset: 3px;
+    border-radius: 2px;
+    border-bottom-color: var(--color-accent-orange);
+  }
+
+  .navbar__cta {
+    display: none;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    padding: 0.6rem 1.25rem;
+  }
+
+  .navbar__hamburger {
+    background-color: rgba(30, 58, 47, 0.08);
+    border: none;
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+  }
+
+  .navbar__hamburger:hover {
+    background-color: rgba(30, 58, 47, 0.14);
+  }
+
+  .navbar__hamburger:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    background-color: rgba(30, 58, 47, 0.14);
+  }
+
+  /* Mobile menu */
+  .navbar__mobile-menu {
+    background-color: var(--color-bg);
+    border-top: 1px solid rgba(30, 58, 47, 0.1);
+    padding: 1rem 1.5rem 1.5rem;
+  }
+
+  .navbar__mobile-menu nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .navbar__mobile-link {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: var(--color-primary);
+    padding: 0.75rem 0;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(30, 58, 47, 0.08);
+  }
+
+  .navbar__mobile-link:hover {
+    color: var(--color-primary-light);
+  }
+
+  .navbar__mobile-link:focus-visible {
+    outline: 2px solid var(--color-accent-orange);
+    outline-offset: 2px;
+    border-radius: 2px;
+    color: var(--color-accent-orange);
+  }
+
+  .navbar__mobile-link--active {
+    color: var(--color-accent-orange);
+  }
+
+  .navbar__mobile-cta {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  /* Desktop breakpoint */
+  @media (min-width: 1024px) {
+    .navbar__links {
+      display: flex;
+    }
+    .navbar__cta {
+      display: inline-block;
+    }
+    .navbar__hamburger {
+      display: none;
+    }
+  }
+</style>

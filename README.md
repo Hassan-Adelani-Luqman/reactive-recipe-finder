@@ -1,59 +1,121 @@
-# ReactiveRecipeFinder
+# Reactive Recipe Finder
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.6.
+A responsive single-page application for discovering and filtering healthy recipes, built with Angular 21 Signals.
 
-## Development server
+## Live Demo
 
-To start a local development server, run:
+_Link coming soon_
 
-```bash
-ng serve
+---
+
+## Overview
+
+Reactive Recipe Finder showcases eight quick, whole-food recipes with real-time search and filtering powered entirely by Angular Signals — no RxJS, no services, just `signal()`, `computed()`, and `effect()`.
+
+## Features
+
+- **Live search** — filter recipes by name or ingredient as you type
+- **Dropdown filters** — narrow results by max prep time and max cook time
+- **Reactive state** — all UI state managed with Angular Signals (`signal`, `computed`, `effect`)
+- **Recipe detail pages** — full ingredients, step-by-step instructions, and related recipes
+- **Fully responsive** — mobile, tablet, and desktop layouts
+- **Accessible** — keyboard navigable, focus-visible styles, ARIA attributes throughout
+
+## Pages
+
+| Route | Page |
+|---|---|
+| `/` | Home |
+| `/about` | About |
+| `/recipes` | Recipes (search & filter) |
+| `/recipes/:slug` | Recipe Detail |
+
+## Tech Stack
+
+| Technology | Version |
+|---|---|
+| Angular | 21.2 |
+| TypeScript | 5.9 |
+| Tailwind CSS | 4.1 |
+| Angular CLI | 21.2 |
+| Node / npm | — / 11.9 |
+
+## Angular Signals Usage
+
+| API | Where used |
+|---|---|
+| `signal()` | Search query, filter values, dropdown open/close state, mobile menu, active recipe |
+| `computed()` | Filtered recipe list, result count, "more recipes" suggestions |
+| `effect()` | Console log on every search/filter change in `RecipesComponent` |
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── navbar/
+│   │   ├── footer/
+│   │   └── recipe-card/
+│   ├── pages/
+│   │   ├── home/
+│   │   ├── about/
+│   │   ├── recipes/
+│   │   └── recipe-detail/
+│   ├── data/
+│   │   └── recipes.data.ts
+│   └── models/
+│       └── recipe.model.ts
+├── assets/
+│   ├── fonts/
+│   └── images/
+└── styles.css
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Getting Started
 
-## Code scaffolding
+### Prerequisites
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Node.js 20+
+- npm 11+
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Installation
 
 ```bash
-ng generate --help
+# Clone the repository
+git clone <repository-url>
+cd reactive-recipe-finder
+
+# Install dependencies
+npm install
 ```
 
-## Building
-
-To build the project run:
+### Development server
 
 ```bash
-ng build
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Navigate to `http://localhost:4200`. The app reloads automatically on file changes.
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### Production build
 
 ```bash
-ng test
+npm run build
 ```
 
-## Running end-to-end tests
+Output is placed in the `dist/` directory.
 
-For end-to-end (e2e) testing, run:
+## Design
 
-```bash
-ng e2e
-```
+The UI follows a custom Figma design with a warm beige base, forest green primary palette, and orange/teal accents.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+| Token | Value |
+|---|---|
+| Primary | `#163A34` |
+| Background | `#F6F5F1` |
+| Accent orange | `#FE9F6B` |
+| Accent teal | `#49AC9B` |
+| Accent indigo | `#697DDB` |
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Typography uses **Nunito** (headings) and **Nunito Sans** (body) variable fonts.
